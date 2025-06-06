@@ -6,6 +6,97 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+/* link ig */
+/*
+==================================================
+/* STYLING BARU UNTUK LINK SOSIAL MEDIA DI FOOTER */
+/*================================================*/
+.footer-social-item {
+  display: inline-flex; /* Menggunakan inline-flex agar bisa di-style seperti flex item */
+  align-items: center; /* Menyelaraskan ikon dan teks secara vertikal */
+  text-decoration: none !important; /* Menghilangkan garis bawah default */
+  color: rgba(255, 255, 255, 0.85); /* Sedikit redupkan warna default */
+  transition: all 0.3s ease; /* Transisi halus untuk efek hover */
+  font-size: 1rem; /* Ukuran font standar */
+}
+
+.footer-social-item i {
+  font-size: 1.5rem; /* Ukuran ikon Instagram */
+  margin-right: 10px; /* Jarak antara ikon dan teks */
+  transition: transform 0.3s ease;
+}
+
+.footer-social-item:hover {
+  color: #ffffff; /* Warna menjadi putih penuh saat di-hover */
+}
+
+.footer-social-item:hover i {
+  transform: scale(1.1); /* Ikon sedikit membesar saat di-hover */
+}
+
+.footer-social-item span {
+  font-weight: 500; /* Memberi sedikit ketebalan pada teks nama akun */
+}
+/* link ig */
+
+/* poster style */
+.poster-section {
+  /* Memberi sedikit warna latar belakang agar tidak terlalu polos */
+  background-color: #f8f9fa;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.poster-card {
+  border-radius: 15px; /* Sudut yang membulat */
+  overflow: hidden; /* Memastikan gambar di dalamnya mengikuti sudut rounded */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transisi halus untuk semua properti */
+  cursor: pointer; /* Mengubah kursor menjadi pointer saat di-hover */
+  background-color: #ffffff;
+  display: flex; /* Menggunakan flexbox untuk tata letak internal */
+  flex-direction: column;
+  height: 100%; /* Memastikan semua kartu memiliki tinggi yang sama */
+}
+
+.poster-card:hover {
+  transform: translateY(-12px) scale(1.03); /* Efek mengangkat dan sedikit membesar */
+  box-shadow: 0 20px 40px rgba(40, 120, 235, 0.3); /* Bayangan glow dengan warna primer tema */
+}
+
+.poster-card .poster-image-wrapper {
+  overflow: hidden; /* Untuk efek zoom pada gambar di dalam */
+}
+
+.poster-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease; /* Transisi untuk efek zoom gambar */
+}
+
+.poster-card:hover img {
+  transform: scale(1.05); /* Sedikit zoom pada gambar saat kartu di-hover */
+}
+
+.poster-card .poster-title {
+  padding: 1.25rem;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark); /* Menggunakan variabel warna dari CSS Anda */
+  margin-top: auto; /* Mendorong judul ke bawah jika tinggi kartu bervariasi */
+}
+
+/* Penyesuaian responsif untuk judul pada layar kecil */
+@media (max-width: 576px) {
+  .poster-title {
+    font-size: 1.2rem;
+  }
+}
+/* poster style */
+
 /* responsif footer */
 /* === CSS untuk Footer Responsif === */
 
