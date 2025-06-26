@@ -8,9 +8,7 @@
 
 /* link ig */
 /*
-==================================================
 /* STYLING BARU UNTUK LINK SOSIAL MEDIA DI FOOTER */
-/*================================================*/
 .footer-social-item {
   display: inline-flex; /* Menggunakan inline-flex agar bisa di-style seperti flex item */
   align-items: center; /* Menyelaraskan ikon dan teks secara vertikal */
@@ -457,71 +455,72 @@
   transform: scale(1.05); /* Sedikit membesar saat disentuh mouse */
 }
 
-/* Styling untuk menampilkan BANYAK logo (grid responsif) */
+/* Styling untuk menampilkan BANYAK logo */
 .logo-display-multiple {
   display: flex;
-  flex-wrap: wrap; /* Logo akan pindah baris jika tidak cukup ruang */
+  flex-wrap: wrap; /* logo turun baris jika tidak muat */
   justify-content: center; /* Logo terpusat secara horizontal */
-  align-items: center; /* Logo terpusat secara vertikal dalam barisnya */
-  gap: 2.5rem 2rem; /* Jarak antar logo (vertikal horizontal) */
+  align-items: center; /* Logo terpusat secara vertikal */
+  gap: 2.5rem; /* Jarak seragam antar logo (vertikal dan horizontal) */
   padding: 1rem 0;
 }
 
 .logo-display-multiple .logo-item {
-  text-align: center; /* Untuk memastikan gambar di tengah jika ada ruang ekstra pada item */
-}
+  /* Mengatur basis lebar item agar bisa memuat sekitar 4-5 logo per baris di desktop.
+     Flexbox akan secara otomatis menyesuaikannya. */
+  flex: 0 1 180px;
 
-.logo-display-multiple .logo-item img {
-  max-width: 180px; /* Batas lebar maksimum logo dalam grid */
-  max-height: 90px; /* Batas tinggi maksimum logo dalam grid */
-  object-fit: contain;
+  /* Ukuran logo dibuat sedikit lebih kecil */
+  max-width: 190px; /* Batas lebar maksimum logo */
+  max-height: 90px; /* Batas tinggi maksimum logo */
+  object-fit: contain; /* Memastikan rasio aspek logo tetap terjaga */
+
+  /* Efek transisi saat hover */
   transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.85; /* Sedikit transparan, menjadi solid saat hover */
+  opacity: 0.9; /* Sedikit transparan, menjadi solid saat hover */
 }
 
-.logo-display-multiple .logo-item img:hover {
-  transform: scale(1.1); /* Lebih besar saat hover */
+.logo-display-multiple .logo-item:hover {
+  transform: scale(1.1); /* Sedikit lebih besar saat kursor diarahkan */
   opacity: 1;
 }
 
 /* Penyesuaian Responsif */
+@media (max-width: 992px) {
+  /* Untuk Tablet */
+  .logo-display-multiple .logo-item {
+    /* Di tablet, kita ingin basisnya sedikit lebih kecil agar 3-4 logo muat */
+    flex-basis: 160px;
+    max-height: 80px;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Tablet kecil dan di bawahnya */
-  .section-main-title-custom {
-    /* Bootstrap display-5 sudah responsif, namun Anda bisa override jika perlu */
-    /* font-size: 2rem; */ /* Contoh override jika perlu */
-  }
-  .logo-display-single .partner-logo {
-    max-width: 220px;
-    max-height: 110px;
-  }
+  /* Untuk Tablet Kecil */
   .logo-display-multiple {
-    gap: 2rem 1.5rem;
+    gap: 2rem; /* Jarak antar logo sedikit lebih kecil */
   }
-  .logo-display-multiple .logo-item img {
-    max-width: 150px;
+
+  .logo-display-multiple .logo-item {
+    /* Di tablet kecil, kita ingin basisnya lebih kecil agar 2-3 logo muat */
+    flex-basis: 150px;
     max-height: 75px;
   }
 }
 
 @media (max-width: 576px) {
-  /* Ponsel */
-  .section-main-title-custom {
-    /* font-size: 1.75rem; */ /* Contoh override jika perlu */
-  }
-  .logo-display-single .partner-logo {
-    max-width: 180px;
-    max-height: 90px;
-  }
+  /* Untuk Ponsel/Mobile */
   .logo-display-multiple {
-    gap: 1.5rem 1rem; /* Jarak lebih rapat di ponsel */
+    gap: 1.5rem; /* Jarak lebih rapat di ponsel */
   }
-  .logo-display-multiple .logo-item img {
-    max-width: 120px; /* Logo lebih kecil di ponsel */
-    max-height: 60px;
+
+  .logo-display-multiple .logo-item {
+    /* Di ponsel, kita ingin 2 logo per baris, jadi basisnya lebih besar (sekitar 40-45%) */
+    flex-basis: 40%;
+    max-width: 130px; /* Logo lebih kecil lagi di ponsel */
+    max-height: 65px;
   }
 }
-/* media pratner */
 
 /* timeline webinar */
 /* Styling untuk Informasi Jadwal Webinar (Timeline Single) */
