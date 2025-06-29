@@ -180,8 +180,8 @@
 
 /* resnponsiv logo code header */
 .header-main-logo {
-  max-width: 100%;
-  max-height: 220px; /* Tinggi maksimal default untuk layar besar */
+  max-width: 120%;
+  max-height: 240px; /* Tinggi maksimal default untuk layar besar */
   width: auto;
   height: auto;
 }
@@ -189,14 +189,14 @@
 @media (max-width: 767.98px) {
   /* Layar medium (tablet) */
   .header-main-logo {
-    max-height: 150px; /* Perkecil untuk tablet */
+    max-height: 180px; /* Perkecil untuk tablet */
   }
 }
 
 @media (max-width: 575.98px) {
   /* Layar kecil (smartphone) */
   .header-main-logo {
-    max-height: 100px; /* Lebih kecil lagi untuk smartphone */
+    max-height: 150px; /* Lebih kecil lagi untuk smartphone */
   }
 }
 
@@ -792,100 +792,72 @@
 /* timeline */
 
 /* gallery */
-.gallery-wrapper {
-  display: flex;
-  align-items: center;
+.gallery-grid-item {
   position: relative;
-}
-
-.gallery-scroll-container {
-  flex-grow: 1;
-  overflow-x: auto;
-  white-space: nowrap; /* Penting agar item tetap dalam satu baris */
-  -ms-overflow-style: none; /* Sembunyikan scrollbar di IE/Edge */
-  scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
-  scroll-behavior: smooth; /* Animasi scroll yang halus */
-  margin: 0 15px; /* Jarak antara tombol dan kontainer scroll */
-}
-
-.gallery-scroll-container::-webkit-scrollbar {
-  display: none; /* Sembunyikan scrollbar di Chrome, Safari, Opera */
-}
-
-.gallery-items-row {
-  display: inline-flex; /* Membuat item berjajar dan memungkinkan white-space: nowrap bekerja */
-  padding-bottom: 10px; /* Memberi sedikit ruang jika ada shadow pada item */
-}
-
-.gallery-item {
-  flex-shrink: 0; /* Mencegah item menyusut */
-  width: 280px; /* Sesuaikan lebar item sesuai kebutuhan */
-  margin-right: 15px; /* Jarak antar item */
-}
-
-.gallery-item:last-child {
-  margin-right: 0;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 180px; /* Sesuaikan tinggi gambar atau gunakan aspect-ratio */
-  object-fit: cover; /* Menjaga rasio aspek gambar */
   display: block;
-  border-radius: 8px; /* Sesuai gambar contoh */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sesuai gambar contoh */
-  transition: transform 0.3s ease;
-}
-
-.gallery-item img:hover {
-  transform: scale(1.03); /* Efek hover kecil */
-}
-
-.gallery-nav {
-  background-color: #ffffff;
-  color: #333333;
-  border: 1px solid #dddddd;
-  font-size: 1rem; /* Ukuran ikon Font Awesome */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  border-radius: 50%; /* Membuat tombol bulat */
-  width: 40px;
-  height: 40px;
+}
+
+.gallery-grid-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-grid-item:hover img {
+  transform: scale(1.2);
+}
+
+.gallery-grid-item .gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(40, 120, 235, 0.7); */
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* Mencegah tombol menyusut */
-  z-index: 10; /* Memastikan tombol di atas elemen lain jika ada tumpang tindih */
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.gallery-nav:hover {
-  background-color: #f1f1f1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+/* .gallery-grid-item:hover .gallery-overlay {
+  opacity: 1;
+} */
+
+/* --- CSS BARU UNTUK PAGINASI --- */
+.gallery-pagination {
+  margin-top: 40px; /* Jarak dari grid ke tombol */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.gallery-nav:disabled {
-  opacity: 0.5;
+#gallery-page-indicator {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.gallery-pagination button {
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.gallery-pagination button:disabled {
+  background-color: #6c757d; /* Warna abu-abu saat tombol tidak aktif */
+  border-color: #6c757d;
+  opacity: 0.65;
   cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* Progress Bar Styling */
-.gallery-progress-bar-container {
-  width: 70%; /* Lebar kontainer progress bar */
-  margin: 25px auto 0; /* Posisi di bawah galeri */
-  height: 6px;
-  background-color: #e9ecef; /* Warna latar belakang */
-  border-radius: 3px;
-  overflow: hidden; /* Agar progress bar di dalamnya tidak keluar dari radius */
-}
-
-.gallery-progress-bar {
-  width: 0%; /* Lebar awal, akan diupdate oleh JavaScript */
-  height: 100%;
-  background-color: #007bff; /* Warna utama (biru Bootstrap default) atau sesuaikan */
-  border-radius: 3px;
-  transition: width 0.25s ease-out; /* Transisi halus saat lebar berubah */
 }
 /* gallery */
 

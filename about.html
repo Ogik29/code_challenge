@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px">
             <div class="position-relative h-100" style="border-radius: 15px; overflow: hidden">
-              <img class="position-absolute w-100 h-100" src="img/about.png" style="object-fit: cover; object-position: 30% 70%" />
+              <img class="position-absolute w-100 h-100" src="img/about2.jpg" style="object-fit: cover" />
             </div>
           </div>
           <div class="col-lg-7">
@@ -150,57 +150,18 @@
     <!-- tema End -->
 
     <!-- gallery -->
-    <div class="container-fluid gallery-section mt-5 mb-5">
+    <div class="container-fluid gallery-section py-5">
       <div class="container">
-        <div class="section-title text-center position-relative pb-3 mb-3 mx-auto" style="max-width: 800px">
+        <div class="section-title text-center position-relative pb-3 mx-auto" style="max-width: 800px">
           <h1>Gallery</h1>
         </div>
 
-        <div class="gallery-wrapper">
-          <button class="gallery-nav gallery-nav-prev" aria-label="Previous Gallery Item">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <div class="gallery-scroll-container">
-            <div class="gallery-items-row">
-              <div class="gallery-item">
-                <img src="img/explo (1).JPG" alt="Kegiatan C.O.D.E Challenge 1" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (2).JPG" alt="Kegiatan C.O.D.E Challenge 2" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (3).JPG" alt="Kegiatan C.O.D.E Challenge 3" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (4).JPG" alt="Kegiatan C.O.D.E Challenge 4" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (5).JPG" alt="Kegiatan C.O.D.E Challenge 5" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (6).JPG" alt="Kegiatan C.O.D.E Challenge 6" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (7).JPG" alt="Kegiatan C.O.D.E Challenge 7" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (8).JPG" alt="Kegiatan C.O.D.E Challenge 8" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (9).JPG" alt="Kegiatan C.O.D.E Challenge 9" />
-              </div>
-              <div class="gallery-item">
-                <img src="img/explo (10).JPG" alt="Kegiatan C.O.D.E Challenge 10" />
-              </div>
-            </div>
-          </div>
-          <button class="gallery-nav gallery-nav-next" aria-label="Next Gallery Item">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
+        <div id="gallery-grid-container"></div>
 
-        <div class="gallery-progress-bar-container">
-          <div class="gallery-progress-bar"></div>
+        <div class="gallery-pagination">
+          <button id="gallery-prev-btn" class="btn btn-primary">&laquo; Previous</button>
+          <span id="gallery-page-indicator" class="mx-3"></span>
+          <button id="gallery-next-btn" class="btn btn-primary">Next &raquo;</button>
         </div>
       </div>
     </div>
@@ -268,65 +229,98 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        const scrollContainer = document.querySelector('.gallery-scroll-container');
-        const prevButton = document.querySelector('.gallery-nav-prev');
-        const nextButton = document.querySelector('.gallery-nav-next');
-        const progressBar = document.querySelector('.gallery-progress-bar');
+        const galleryImages = [
+          { src: 'img/explo (13).jpg', alt: 'pict C.O.D.E Challenge 1' },
+          { src: 'img/explo (2).jpg', alt: 'pict C.O.D.E Challenge 2' },
+          { src: 'img/explo (3).jpg', alt: 'pict C.O.D.E Challenge 3' },
+          { src: 'img/explo (4).jpg', alt: 'pict C.O.D.E Challenge 4' },
+          { src: 'img/explo (5).jpg', alt: 'pict C.O.D.E Challenge 5' },
+          { src: 'img/explo (6).jpg', alt: 'pict C.O.D.E Challenge 6' },
+          { src: 'img/explo (7).jpg', alt: 'pict C.O.D.E Challenge 7' },
+          { src: 'img/explo (8).jpg', alt: 'pict C.O.D.E Challenge 8' },
+          { src: 'img/explo (9).jpg', alt: 'pict C.O.D.E Challenge 9' },
+          { src: 'img/explo (10).jpg', alt: 'pict C.O.D.E Challenge 10' },
+          { src: 'img/explo (11).jpg', alt: 'pict C.O.D.E Challenge 11' },
+          { src: 'img/explo (12).jpg', alt: 'pict C.O.D.E Challenge 12' },
+          { src: 'img/explo (1).jpg', alt: 'pict C.O.D.E Challenge 13' },
+          { src: 'img/explo (14).jpg', alt: 'pict C.O.D.E Challenge 14' },
+          { src: 'img/explo (15).jpg', alt: 'pict C.O.D.E Challenge 15' },
+          { src: 'img/explo (16).jpg', alt: 'pict C.O.D.E Challenge 16' },
+          { src: 'img/explo (17).jpg', alt: 'pict C.O.D.E Challenge 17' },
+          { src: 'img/explo (18).jpg', alt: 'pict C.O.D.E Challenge 18' },
+        ];
 
-        // Cek apakah semua elemen penting ada
-        if (!scrollContainer || !prevButton || !nextButton) {
-          // console.warn('Gallery elements not found. Navigation will not work.'); // Untuk debug
-          return;
+        const imagesPerPage = 6;
+        let currentPage = 1;
+        const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
+
+        const galleryContainer = document.getElementById('gallery-grid-container');
+        const prevButton = document.getElementById('gallery-prev-btn');
+        const nextButton = document.getElementById('gallery-next-btn');
+        const pageIndicator = document.getElementById('gallery-page-indicator');
+
+        function renderGalleryPage(page) {
+          // Kosongkan container
+          galleryContainer.innerHTML = '';
+
+          // Buat elemen row baru
+          const row = document.createElement('div');
+          row.className = 'row g-4';
+
+          // Hitung gambar yang akan ditampilkan
+          const startIndex = (page - 1) * imagesPerPage;
+          const endIndex = startIndex + imagesPerPage;
+          const imagesToShow = galleryImages.slice(startIndex, endIndex);
+
+          // Buat html untuk setiap gambar dan masukkan ke dalam row
+          imagesToShow.forEach((image) => {
+            const col = document.createElement('div');
+            col.className = 'col-lg-4 col-md-6';
+            col.innerHTML = `
+        <div class="gallery-grid-item">
+          <img src="${image.src}" alt="${image.alt}" class="mt-4" />
+          <div class="gallery-overlay">
+            <i class="fa fa-plus fa-2x text-white"></i>
+          </div>
+        </div>
+      `;
+            row.appendChild(col);
+          });
+
+          galleryContainer.appendChild(row);
+          updateNavigation();
         }
 
-        // Tentukan seberapa jauh scroll setiap kali tombol ditekan
-        // Anda bisa menyesuaikan nilai ini atau membuatnya dinamis berdasarkan lebar item
-        let scrollAmount = scrollContainer.clientWidth * 0.75; // Scroll 75% dari lebar visible
-
-        function updateButtonStates() {
-          // Cek apakah bisa scroll ke kiri (toleransi 1px untuk kalkulasi float)
-          prevButton.disabled = scrollContainer.scrollLeft <= 1;
-          // Cek apakah bisa scroll ke kanan (toleransi 1px)
-          nextButton.disabled = scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1;
-        }
-
-        function updateProgressBar() {
-          if (progressBar) {
-            const scrollableWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-            if (scrollableWidth <= 0) {
-              // Jika tidak ada yang bisa di-scroll (semua item terlihat)
-              progressBar.style.width = '100%'; // Atau '0%' jika preferensi berbeda
-              return;
-            }
-            const progressPercentage = (scrollContainer.scrollLeft / scrollableWidth) * 100;
-            progressBar.style.width = Math.min(100, Math.max(0, progressPercentage)) + '%'; // Pastikan antara 0 dan 100
+        function updateNavigation() {
+          // Perbarui indikator halaman
+          if (totalPages > 0) {
+            pageIndicator.textContent = `Page ${currentPage} / ${totalPages}`;
+          } else {
+            pageIndicator.textContent = 'Tidak ada gambar';
           }
+
+          // Atur status tombol (aktif/nonaktif)
+          prevButton.disabled = currentPage === 1;
+          nextButton.disabled = currentPage === totalPages || totalPages === 0;
         }
 
-        prevButton.addEventListener('click', function () {
-          scrollContainer.scrollLeft -= scrollAmount;
+        // Event listener untuk tombol
+        nextButton.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderGalleryPage(currentPage);
+          }
         });
 
-        nextButton.addEventListener('click', function () {
-          scrollContainer.scrollLeft += scrollAmount;
+        prevButton.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderGalleryPage(currentPage);
+          }
         });
 
-        // Panggil update saat scroll terjadi (termasuk scroll manual dengan mouse/touch)
-        scrollContainer.addEventListener('scroll', function () {
-          updateButtonStates();
-          updateProgressBar();
-        });
-
-        // Panggil sekali saat load untuk inisialisasi state tombol dan progress bar
-        updateButtonStates();
-        updateProgressBar();
-
-        // Jika ada perubahan ukuran window, update state tombol dan kalkulasi scrollAmount
-        window.addEventListener('resize', function () {
-          scrollAmount = scrollContainer.clientWidth * 0.75; // Kalkulasi ulang scrollAmount
-          updateButtonStates();
-          updateProgressBar();
-        });
+        // Tampilkan halaman pertama saat web dimuat
+        renderGalleryPage(currentPage);
       });
     </script>
 
