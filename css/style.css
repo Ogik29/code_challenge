@@ -803,8 +803,9 @@
 
 .gallery-grid-item img {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover; /* memastikan gambar memenuhi area tanpa distorsi */
   display: block;
   transition: transform 0.4s ease;
 }
@@ -828,37 +829,8 @@
 }
 
 /* .gallery-grid-item:hover .gallery-overlay {
-  opacity: 1;
+  opacity: 1; 
 } */
-
-/* --- CSS BARU UNTUK PAGINASI --- */
-.gallery-pagination {
-  margin-top: 40px; /* Jarak dari grid ke tombol */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#gallery-page-indicator {
-  font-family: 'Jost', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--dark);
-}
-
-.gallery-pagination button {
-  padding: 10px 20px;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.gallery-pagination button:disabled {
-  background-color: #6c757d; /* Warna abu-abu saat tombol tidak aktif */
-  border-color: #6c757d;
-  opacity: 0.65;
-  cursor: not-allowed;
-}
 /* gallery */
 
 :root {
