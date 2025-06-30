@@ -254,6 +254,8 @@
         let currentPage = 1;
         const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
 
+        // change
+        const galleryTitle = document.querySelector('.gallery-section .section-title');
         const galleryContainer = document.getElementById('gallery-grid-container');
         const prevButton = document.getElementById('gallery-prev-btn');
         const nextButton = document.getElementById('gallery-next-btn');
@@ -304,11 +306,20 @@
           nextButton.disabled = currentPage === totalPages || totalPages === 0;
         }
 
+        function scrollToGalleryTitle() {
+          // Pengecekan untuk memastikan elemen ditemukan
+          if (galleryTitle) {
+            // jika ditemukan maka akan scroll viewnya menuju ke section title gallery
+            galleryTitle.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+
         // Event listener untuk tombol
         nextButton.addEventListener('click', () => {
           if (currentPage < totalPages) {
             currentPage++;
             renderGalleryPage(currentPage);
+            scrollToGalleryTitle(); // Memanggil fungsi scroll
           }
         });
 
@@ -316,6 +327,7 @@
           if (currentPage > 1) {
             currentPage--;
             renderGalleryPage(currentPage);
+            scrollToGalleryTitle(); // Memanggil fungsi scroll
           }
         });
 
