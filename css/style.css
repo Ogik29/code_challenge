@@ -6,8 +6,118 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+/* new content quadralink */
+
+/* new content quadralink end */
+
+/* new event container */
+.new-event-section {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+  margin: 60px 0;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+.new-event-subtitle {
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.arrow-down-animation {
+  font-size: 2rem;
+  color: var(--secondary);
+  animation: bounce-down 2s infinite ease-in-out;
+}
+
+/* Animasi untuk panah ke bawah */
+@keyframes bounce-down {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(15px);
+  }
+  60% {
+    transform: translateY(8px);
+  }
+}
+
+.new-event-title {
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.new-event-description {
+  max-width: 650px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.new-event-section .btn-lg-custom {
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 20px rgba(40, 120, 235, 0.25);
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.new-event-section .btn-lg-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(40, 120, 235, 0.4);
+  background-color: #1465d9;
+}
+
+.new-event-section .btn-lg-custom .fa-arrow-right {
+  transition: transform 0.3s ease;
+}
+
+.new-event-section .btn-lg-custom:hover .fa-arrow-right {
+  transform: translateX(5px);
+}
+
+/* responsifitas */
+/* Untuk Tablet */
+@media (max-width: 991.98px) {
+  .new-event-section {
+    margin: 45px 0;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  .new-event-title {
+    font-size: 3rem; /* Sedikit lebih kecil dari display-4 */
+  }
+}
+
+/* Untuk Smartphone */
+@media (max-width: 575.98px) {
+  .new-event-title {
+    font-size: 2.5rem;
+  }
+  .new-event-description {
+    font-size: 1rem;
+  }
+  .arrow-down-animation {
+    font-size: 1.8rem;
+  }
+  .new-event-section .btn-lg-custom {
+    padding: 14px 30px !important;
+    font-size: 1rem;
+  }
+}
+/* new event container end */
+
 /* link ig */
-/*
 /* STYLING BARU UNTUK LINK SOSIAL MEDIA DI FOOTER */
 .footer-social-item {
   display: inline-flex; /* Menggunakan inline-flex agar bisa di-style seperti flex item */
@@ -10980,38 +11090,6 @@ h6,
   }
 }
 
-/* .jumbotron {
-  background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(../img/header2.png), no-repeat center center;
-  background-size: cover;
-}
-
-.jumbotron.page-header {
-  background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(../img/page-header.jpg), no-repeat center center;
-  background-size: cover;
-} */
-
-/* .overlay-top::before,
-.overlay-bottom::after {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 85px;
-  left: 0;
-  z-index: 1;
-}
-
-.overlay-top::before {
-  top: 0;
-  background: url(../img/overlay-top.png) top center no-repeat;
-  background-size: contain;
-}
-
-.overlay-bottom::after {
-  bottom: 0;
-  background: url(../img/overlay-bottom.png) bottom center no-repeat;
-  background-size: contain;
-} */
-
 /* CSS Baru untuk Garis Biru Glow pada Footer */
 .footer-glow-line {
   /* position-relative sudah ada di HTML */
@@ -11032,16 +11110,6 @@ h6,
   /* Jika ingin garisnya sedikit di atas footer (seolah memisahkan): */
   /* transform: translateY(-100%); */ /* Ini akan menempatkan garis tepat di atas elemen .footer-glow-line */
 }
-
-/* Penyesuaian jika footer memiliki padding-top yang signifikan */
-/* Jika .py-5 (padding-top: 3rem) pada .footer-glow-line membuat garis glow tertutup,
-   Anda bisa menaikkan garisnya atau menyesuaikan padding.
-   Untuk kasus ini, garis akan berada di dalam area padding atas footer.
-   Jika ingin garis benar-benar di atas batas atas footer (sebelum padding),
-   maka transform: translateY(-100%); bisa digunakan, atau letakkan ::before pada elemen pembungkus luar footer.
-   Namun, dengan position:absolute dan top:0 pada .footer-glow-line (yang memiliki bg-primary), garis akan
-   muncul di paling atas dari background biru footer tersebut.
-*/
 
 .bg-image {
   background: linear-gradient(rgba(40, 120, 235, 0.05), rgba(40, 120, 235, 0.05)), url(../img/bg-image.jpg);
@@ -11136,16 +11204,18 @@ h6,
   background: #f14d5d;
 }
 
-.testimonial-carousel .owl-item img {
-  width: 80px;
-  height: 80px;
+.testimonial-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain; /* Memastikan logo tidak penyok/terpotong */
 }
 
+/* --- Style Tombol Navigasi untuk Layar Besar (Desktop) --- */
 .testimonial-carousel .owl-nav {
   position: absolute;
   width: 120px;
   height: 60px;
-  top: 0;
+  top: -95px; /* Pindahkan ke atas, sejajar dengan judul */
   right: 0;
   display: flex;
   z-index: 1;
@@ -11160,16 +11230,23 @@ h6,
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  background: #2878eb;
+  background: #2878eb; /* Warna Biru Utama */
   font-size: 22px;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
-.testimonial-carousel .owl-nav .owl-prev,
+.testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
-  background: #f14d5d;
+  background: #f14d5d; /* Warna Merah saat hover */
 }
 
-.testimonial-carousel .owl-nav .owl-prev:hover {
-  background: #2878eb;
+/* --- Style Tombol Navigasi untuk Layar Kecil (Mobile) --- */
+@media (max-width: 768px) {
+  .testimonial-carousel .owl-nav {
+    position: static;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+  }
 }
